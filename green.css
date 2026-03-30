@@ -39,3 +39,11 @@ img {
     border-radius: 15px; 
     box-shadow: 0 4px 8px #c4d0c5; 
 }
+
+button {
+    padding: 10px;
+    margin: 10px 5px;
+    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid  #2e8b57; 
+}
