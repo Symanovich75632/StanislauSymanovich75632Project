@@ -40,10 +40,32 @@ img {
     box-shadow: 0 4px 8px #c4d0c5; 
 }
 
+
+
 button {
-    padding: 10px;
-    margin: 10px 5px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px; 
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    font-weight: bold;
     cursor: pointer;
-    background: #ffffff;
-    border: 1px solid  #2e8b57; 
+    box-shadow: 5px 5px 10px #c8e6c9, 
+               -5px -5px 10px #ffffff;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    box-shadow: inset 2px 2px 5px #c8e6c9, 
+                inset -2px -2px 5px #ffffff;
+}
+
+
+input, textarea {
+    border-radius: 15px; 
+    border: 1px solid #c8e6c9;
+    padding: 10px;
+    margin-top: 5px;
+    background: #f1f8f1;
 }

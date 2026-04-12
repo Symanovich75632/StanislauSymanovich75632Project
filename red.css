@@ -42,10 +42,32 @@ img {
     box-shadow: 0px 4px 8px #b7a2a7;
 }
 
+
+/* Nowy styl dla przycisku */
 button {
-    padding: 10px;
-    margin: 10px 5px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 0; 
+    background-color: #fce4e4;
+    color: #b71c1c;
+    font-weight: bold;
     cursor: pointer;
-    background: #ffffff;
-    border: 1px solid #b71c1c;
+    box-shadow: 5px 5px 10px #d4b2b7, 
+               -5px -5px 10px #ffffff;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    box-shadow: inset 2px 2px 5px #d4b2b7, 
+                inset -2px -2px 5px #ffffff;
+}
+
+
+input, textarea {
+    border-radius: 0;
+    border: 1px solid #d4b2b7;
+    padding: 10px;
+    margin-top: 5px;
+    background: #fdf2f2;
 }
