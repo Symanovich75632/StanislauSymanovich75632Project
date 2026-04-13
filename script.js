@@ -29,3 +29,49 @@ toggleBtn.onclick = function() {
         toggleBtn.textContent = 'Pokaż sekcję'; 
     }
 }
+
+
+
+
+
+
+
+document.getElementById('contact-form').onsubmit = function(event) {
+    // Zapobiegamy domyślnej akcji formularza (przeładowaniu strony)
+    event.preventDefault();
+
+   // Pobieramy wartości z pól formularza
+    const firstName = document.getElementById('first-name').value.trim();
+    const lastName = document.getElementById('last-name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const errorBox = document.getElementById('error-message');
+
+    // Czyścimy poprzednie komunikaty błędów
+    errorBox.textContent = '';
+
+    
+    
+   //czy wszystkie pola są wypełnione
+    if (!firstName || !lastName || !email || !message) {
+        errorBox.textContent = 'Wszystkie pola są wymagane!';
+        return;
+    }
+
+    //nie zawierają cyfr
+    const nameRegex = /\d/;
+    if (nameRegex.test(firstName) || nameRegex.test(lastName)) {
+        errorBox.textContent = 'Imię i nazwisko nie mogą zawierać cyfr!';
+        return;
+    }
+
+    
+    if (!email.includes('@') || !email.includes('.')) {
+        errorBox.textContent = 'Podaj poprawny adres e-mail!';
+        return;
+    }
+
+    
+    alert('Formularz wysłany poprawnie!');
+    this.reset(); 
+};

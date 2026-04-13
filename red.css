@@ -43,31 +43,44 @@ img {
 }
 
 
-/* Nowy styl dla przycisku */
+
 button {
-    padding: 12px 25px;
+    background-color: #b71c1c;
+    color: white;
+    padding: 10px 20px;
     border: none;
     border-radius: 0; 
-    background-color: #fce4e4;
-    color: #b71c1c;
-    font-weight: bold;
     cursor: pointer;
-    box-shadow: 5px 5px 10px #d4b2b7, 
-               -5px -5px 10px #ffffff;
-    transition: 0.3s;
-    margin-top: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0px #5f0a0a; 
+    margin-right: 10px;
 }
 
 button:hover {
-    box-shadow: inset 2px 2px 5px #d4b2b7, 
-                inset -2px -2px 5px #ffffff;
+    background-color: #ef5350;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #5f0a0a;
 }
 
 
-input, textarea {
-    border-radius: 0;
-    border: 1px solid #d4b2b7;
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px; 
+    margin: 20px 0;
+}
+
+#contact-form label {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #b71c1c;
+}
+
+#contact-form input, #contact-form textarea {
+    margin-bottom: 10px;
     padding: 10px;
-    margin-top: 5px;
-    background: #fdf2f2;
+    border: 2px solid #b71c1c; 
+    border-radius: 0; 
+    background: #fff;
 }
