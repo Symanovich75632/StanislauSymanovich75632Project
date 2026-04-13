@@ -73,5 +73,5 @@ document.getElementById('contact-form').onsubmit = function(event) {
 
     
     alert('Formularz wysłany poprawnie!');
-    this.reset(); 
+   // this.reset(); //nie jest koniecznie
 };
