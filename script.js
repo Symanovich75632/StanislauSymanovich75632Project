@@ -125,6 +125,9 @@ window.onload = function() {
             });
             projectsSection.appendChild(ol);
 
+
+            renderExtraSections(data); //extra sections
+
         }) // then end
         .catch(error => console.error("Błąd:", error)); 
 };
