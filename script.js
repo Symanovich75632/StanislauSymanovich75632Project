@@ -85,15 +85,30 @@ document.getElementById('contact-form').onsubmit = function(event) {
 
 //za 6
 window.onload = function() {
-    
-   
     fetch('data.json')
-        .then(response => response.json()) 
+        .then(response => response.json())
         .then(data => {
-            //  czy działa
-            console.log("Udało się pobrać dane:", data);
+            
+            const skillsSection = document.getElementById('umiejetnosci');
+
+            //h2 from json
+            const h2 = document.createElement('h2');
+            h2.textContent = data.umiejetnosci.tytul;
+            skillsSection.appendChild(h2);
+
+            // ul
+            const ul = document.createElement('ul');
+            
+            // repeat for each skill in json
+            data.umiejetnosci.lista.forEach(skill => 
+            {
+                const li = document.createElement('li');
+                li.textContent = skill; 
+                ul.appendChild(li);      //li inside ul
+            });
+
+            // ul inside section
+            skillsSection.appendChild(ul);
         })
-        .catch(error => {
-            console.error("Coś poszło nie tak:", error);
-        });
+        .catch(error => console.error("Błąd:", error)); 
 };
