@@ -88,27 +88,50 @@ window.onload = function() {
     fetch('data.json')
         .then(response => response.json())
         .then(data => {
-            
-            const skillsSection = document.getElementById('umiejetnosci');
+            //json + js
 
-            //h2 from json
+            // umiejetnosci
+            const skillsSection = document.getElementById('umiejetnosci');
             const h2 = document.createElement('h2');
             h2.textContent = data.umiejetnosci.tytul;
             skillsSection.appendChild(h2);
 
-            // ul
             const ul = document.createElement('ul');
-            
-            // repeat for each skill in json
-            data.umiejetnosci.lista.forEach(skill => 
-            {
+            data.umiejetnosci.lista.forEach(skill => {
                 const li = document.createElement('li');
                 li.textContent = skill; 
-                ul.appendChild(li);      //li inside ul
+                ul.appendChild(li);
             });
-
-            // ul inside section
             skillsSection.appendChild(ul);
-        })
+
+            // projekty
+            const projectsSection = document.getElementById('projekty');
+            const h2Proj = document.createElement('h2');
+            h2Proj.textContent = data.projekty.tytul; 
+            projectsSection.appendChild(h2Proj);
+
+            const ol = document.createElement('ol');
+            data.projekty.lista.forEach(project => {
+                const li = document.createElement('li');
+                li.textContent = project.nazwa + " "; 
+
+                const link = document.createElement('a');
+                link.href = project.link;
+                link.textContent = project.linkTekst;
+                link.target = "_blank";
+
+                li.appendChild(link);
+                ol.appendChild(li);
+            });
+            projectsSection.appendChild(ol);
+
+        }) // then end
         .catch(error => console.error("Błąd:", error)); 
 };
+
+
+
+
+
+
+
