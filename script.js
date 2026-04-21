@@ -75,3 +75,25 @@ document.getElementById('contact-form').onsubmit = function(event) {
     alert('Formularz wysłany poprawnie!');
    // this.reset(); //nie jest koniecznie
 };
+
+
+
+
+
+
+
+
+//za 6
+window.onload = function() {
+    
+   
+    fetch('data.json')
+        .then(response => response.json()) 
+        .then(data => {
+            //  czy działa
+            console.log("Udało się pobrać dane:", data);
+        })
+        .catch(error => {
+            console.error("Coś poszło nie tak:", error);
+        });
+};
