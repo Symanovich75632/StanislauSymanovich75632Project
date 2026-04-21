@@ -132,6 +132,62 @@ window.onload = function() {
         .catch(error => console.error("Błąd:", error)); 
 };
 
+//extra sections
+function renderExtraSections(data) {
+    // o mnie
+    const aboutSection = document.getElementById('o_mnie');                   
+    const h2About = document.createElement('h2');
+    h2About.textContent = data.o_mnie.tytul; 
+    aboutSection.appendChild(h2About);
+
+    const pAbout = document.createElement('p');
+    pAbout.textContent = data.o_mnie.opis; 
+    aboutSection.appendChild(pAbout);
+    
+
+
+    // edukacja
+    const eduSection = document.getElementById('edukacja');
+    const h2Edu = document.createElement('h2');
+    h2Edu.textContent = data.edukacja.tytul; 
+    eduSection.appendChild(h2Edu);
+
+    const pEdu = document.createElement('p');
+    pEdu.textContent = data.edukacja.opis; 
+    eduSection.appendChild(pEdu);
+
+
+
+
+    // doswiadczenie
+    const expSection = document.getElementById('doswiadczenie');
+    const h2Exp = document.createElement('h2');
+    h2Exp.textContent = data.doswiadczenie.tytul; 
+    expSection.appendChild(h2Exp);
+
+    //
+    data.doswiadczenie.lista.forEach(exp => {
+        const article = document.createElement('article'); // Tworzymy element article dla każdego doświadczenia
+        
+        const h3 = document.createElement('h3');
+        h3.textContent = exp.stanowisko; // Dajemy nazwę stanowiska jako nagłówek
+        
+        const pData = document.createElement('p');
+        pData.textContent = "Data: " + exp.data; // Dostajemy datę doświadczenia
+        
+        const pOpis = document.createElement('p');
+        pOpis.textContent = "Opis: " + exp.opis; // Dostajemy opis doświadczenia
+
+        // Dodajemy elementy do article
+        article.appendChild(h3);
+        article.appendChild(pData);
+        article.appendChild(pOpis);
+        
+        // article na stronę
+        expSection.appendChild(article);
+    }   );
+}
+
 
 
 
