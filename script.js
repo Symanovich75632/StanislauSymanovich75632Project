@@ -72,8 +72,40 @@ document.getElementById('contact-form').onsubmit = function(event) {
     }
 
     
-    alert('Formularz wysłany poprawnie!');
-   // this.reset(); //nie jest koniecznie
+   // zad 8 - wysyłanie danych do Firebase
+    // 1. Zbieramy dane z formularza
+        const formData = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        message: message
+            
+        };
+
+        // 2. Wysyłamy dane na serwer (Firebase) za pomocą fetch
+        
+        const firebaseUrl = 'https://stanislausymanovich75632zad8-default-rtdb.europe-west1.firebasedatabase.app/contactMessages.json'; // Adres URL do Twojej bazy Firebase (z .json na końcu)
+
+        fetch(firebaseUrl, {
+            method: 'POST', // Metoda POST do wysyłania danych
+            headers: {
+                'Content-Type': 'application/json' // Informujemy, że wysyłamy JSON
+            },
+            body: JSON.stringify(formData) // Zamieniamy dane na format JSON
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Formularz wysłany poprawnie!');
+                    this.reset(); // Czyścimy formularz po wysłaniu
+            } else {
+                alert('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie.');
+            }
+  
+        })
+        .catch(error => {
+            console.error('Błąd:', error);
+            alert('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie.');
+        });
 };
 
 
