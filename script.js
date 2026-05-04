@@ -85,6 +85,12 @@ document.getElementById('contact-form').onsubmit = function(event) {
 
 //za 6
 window.onload = function() {
+
+
+    loadNotes(); 
+
+
+
     fetch('data.json')
         .then(response => response.json())
         .then(data => {
@@ -195,15 +201,30 @@ const noteText = document.getElementById('note-text');
 const addBtn = document.getElementById('add-btn');
 const notesList = document.getElementById('notes-list');
 
-addBtn.onclick = function() {
+addBtn.onclick = function() 
+{
     const value = noteText.value;
     if (value) {
         const li = document.createElement('li');
         li.textContent = value;
         notesList.appendChild(li);
         noteText.value = ''; // Czyścimy pole tekstowe
+        saveNotes(); // Zapisujemy notatki do localStorage
     }
 };
+function saveNotes() 
+{
+    const notes = [];   // pusta tablica
+    notesList.querySelectorAll('li').forEach(li => // Pobieramy wszystkie elementy <li> z listy notatek
+        {
+        notes.push(li.textContent); // Dodajemy tekst każdej notatki do tablicy
+        }
+    );
+    localStorage.setItem('notes', JSON.stringify(notes));// Zapisujemy tablicę notatek jako JSON w localStorage
+}
 
+function loadNotes()
+{
 
+}
 
