@@ -207,6 +207,7 @@ addBtn.onclick = function()
     if (value) {
         const li = document.createElement('li');
         li.textContent = value;
+        addDeleteButton(li); // Dodajemy przycisk usuwania do notatki
         notesList.appendChild(li);
         noteText.value = ''; // Czyścimy pole tekstowe
         saveNotes(); // Zapisujemy notatki do localStorage
@@ -217,7 +218,7 @@ function saveNotes()
     const notes = [];   // pusta tablica
     notesList.querySelectorAll('li').forEach(li => // Pobieramy wszystkie elementy <li> z listy notatek
         {
-        notes.push(li.textContent); // Dodajemy tekst każdej notatki do tablicy
+        notes.push(li.firstChild.textContent); // Dodajemy tekst każdej notatki do tablicy
         }
     );
     localStorage.setItem('notes', JSON.stringify(notes));// Zapisujemy tablicę notatek jako JSON w localStorage
@@ -231,9 +232,21 @@ function loadNotes()
         notes.forEach(note => {
             const li = document.createElement('li');
             li.textContent = note; // Ustawiamy tekst notatki
+            addDeleteButton(li); // Dodajemy przycisk usuwania do notatki
             notesList.appendChild(li); // Dodajemy notatkę do listy na stronie
         });
     }
 
 }       
 
+function addDeleteButton(li) {
+    const delBtn = document.createElement('button');
+    delBtn.textContent = ' Usuń'; //   Tekst przycisku
+    
+    delBtn.onclick = function() {
+        li.remove(); // Usuwamy notatkr z list
+        saveNotes(); //Zapisujemy aktualizowaną listę notatek do localStorage
+    };
+    
+    li.appendChild(delBtn); // Dodajemy przycisk do elementu <li>
+}
