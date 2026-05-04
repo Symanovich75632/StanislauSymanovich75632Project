@@ -200,20 +200,43 @@ function renderExtraSections(data) {
 const noteText = document.getElementById('note-text');
 const addBtn = document.getElementById('add-btn');
 const notesList = document.getElementById('notes-list');
+const titleInput = document.getElementById('note-title');
 
 addBtn.onclick = function() 
 {
-    const value = noteText.value;
-    if (value) {
-        const li = document.createElement('li');
-        li.textContent = value;
-        addDeleteButton(li); // Dodajemy przycisk usuwania do notatki
-        notesList.appendChild(li);
-        noteText.value = ''; // Czyścimy pole tekstowe
-        saveNotes(); // Zapisujemy notatki do localStorage
+    const titleValue = titleInput.value.trim();
+    const textValue = noteText.value.trim(); 
+    
+    if (titleValue && textValue) {
+        createDynamicSection(titleValue, textValue);
+        
+        titleInput.value = '';
+        noteText.value = '';
+        
+        saveNotes(); 
     }
 };
-function saveNotes() 
+function createDynamicSection(title, text) {
+    const section = document.createElement('section');
+    section.className = 'dynamic-note'; 
+
+    const h2 = document.createElement('h2');
+    h2.textContent = title;
+
+    const p = document.createElement('p');
+    p.textContent = text;
+
+   
+    section.appendChild(h2);
+    section.appendChild(p);
+    
+   
+    addDeleteButton(section); 
+    
+    notesList.appendChild(section);
+}
+
+/*function saveNotes() 
 {
     const notes = [];   // pusta tablica
     notesList.querySelectorAll('li').forEach(li => // Pobieramy wszystkie elementy <li> z listy notatek
@@ -238,7 +261,7 @@ function loadNotes()
     }
 
 }       
-
+*/
 function addDeleteButton(li) {
     const delBtn = document.createElement('button');
     delBtn.textContent = ' Usuń'; //   Tekst przycisku
