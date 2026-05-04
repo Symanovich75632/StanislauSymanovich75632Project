@@ -225,6 +225,15 @@ function saveNotes()
 
 function loadNotes()
 {
+    const notes = JSON.parse(localStorage.getItem('notes')); // Pobieramy notatki z localStorage i parsujemy je z JSON
+    if (notes) 
+        {
+        notes.forEach(note => {
+            const li = document.createElement('li');
+            li.textContent = note; // Ustawiamy tekst notatki
+            notesList.appendChild(li); // Dodajemy notatkę do listy na stronie
+        });
+    }
 
-}
+}       
 
