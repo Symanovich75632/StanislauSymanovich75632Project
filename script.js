@@ -190,7 +190,20 @@ function renderExtraSections(data) {
 
 
 
+//zad 7 
+const noteText = document.getElementById('note-text');
+const addBtn = document.getElementById('add-btn');
+const notesList = document.getElementById('notes-list');
 
+addBtn.onclick = function() {
+    const value = noteText.value;
+    if (value) {
+        const li = document.createElement('li');
+        li.textContent = value;
+        notesList.appendChild(li);
+        noteText.value = ''; // Czyścimy pole tekstowe
+    }
+};
 
 
 
