@@ -236,40 +236,45 @@ function createDynamicSection(title, text) {
     notesList.appendChild(section);
 }
 
-/*function saveNotes() 
+function saveNotes() 
 {
-    const notes = [];   // pusta tablica
-    notesList.querySelectorAll('li').forEach(li => // Pobieramy wszystkie elementy <li> z listy notatek
-        {
-        notes.push(li.firstChild.textContent); // Dodajemy tekst każdej notatki do tablicy
-        }
-    );
-    localStorage.setItem('notes', JSON.stringify(notes));// Zapisujemy tablicę notatek jako JSON w localStorage
+    const notes = []; // massiv
+    
+    // look for sections
+    notesList.querySelectorAll('.dynamic-note').forEach(section => {
+        // dostajemy title i text z każdej sekcji i tworzymy obiekt
+        const noteData = {
+            title: section.querySelector('h2').textContent,
+            text: section.querySelector('p').textContent
+        };
+        notes.push(noteData); //dodajemy obiekt do masiva
+    });
+    
+    // Zapisujemy massiv jako string w localStorage
+    localStorage.setItem('notes', JSON.stringify(notes));
 }
 
 function loadNotes()
 {
-    const notes = JSON.parse(localStorage.getItem('notes')); // Pobieramy notatki z localStorage i parsujemy je z JSON
-    if (notes) 
-        {
+    // Pobieramy dane z localStorage i parsujemy je z powrotem
+    const notes = JSON.parse(localStorage.getItem('notes')); 
+    
+    if (notes) {
         notes.forEach(note => {
-            const li = document.createElement('li');
-            li.textContent = note; // Ustawiamy tekst notatki
-            addDeleteButton(li); // Dodajemy przycisk usuwania do notatki
-            notesList.appendChild(li); // Dodajemy notatkę do listy na stronie
+            // zamiast li tworzymy sekcje dla każdej notatki
+            createDynamicSection(note.title, note.text);
         });
     }
+}     
 
-}       
-*/
-function addDeleteButton(li) {
+function addDeleteButton(element) {
     const delBtn = document.createElement('button');
     delBtn.textContent = ' Usuń'; //   Tekst przycisku
     
     delBtn.onclick = function() {
-        li.remove(); // Usuwamy notatkr z list
+        element.remove(); // Usuwamy notatkr z list
         saveNotes(); //Zapisujemy aktualizowaną listę notatek do localStorage
     };
     
-    li.appendChild(delBtn); // Dodajemy przycisk do elementu <li>
+    element.appendChild(delBtn); // Dodajemy przycisk do
 }
